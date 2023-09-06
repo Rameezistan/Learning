@@ -14,17 +14,20 @@ function App() {
       msg: message,
       type: type
     })
+    setTimeout(() => {
+      setAlert(null);
+    }, 1500);
   }
   const toggleMode = ()=>{
     if(mode === 'light'){
       setMode('dark')
       document.body.style.backgroundColor= '#042743';
-      setAlert("Dark mode is enabled", "success");
+      showAlert("Dark mode is enabled", "success");
     }
     else{
       setMode('light')
       document.body.style.backgroundColor= 'white';
-      setAlert("Light mode is enabled", "success");
+      showAlert("Light mode is enabled", "success");
 
     }
   }
@@ -34,7 +37,7 @@ function App() {
 <Alert alert={alert}/>
 
 <div className="container my-3">
-    <TextForm heading="Enter something to analyze" mode={mode} />
+    <TextForm showAlert={showAlert} heading="Enter something to analyze" mode={mode} />
     {/* <About /> */}
 </div>
     </>

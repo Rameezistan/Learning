@@ -1,14 +1,18 @@
 import React, {useState} from 'react'
 
+
 export default function TextForm(props) {
   const handleupclick = ()=>{
     let newtext = text.toUpperCase();
     setText(newtext)
+    props.showAlert("Converted to Uppercase", "success")
   }
 
   const handleloclick = ()=>{
     let newtext = text.toLowerCase();
     setText(newtext)
+    props.showAlert("Converted to Lowercase", "success")
+
   }
   const handleupchange = (event)=>{
     setText(event.target.value);
@@ -18,11 +22,14 @@ export default function TextForm(props) {
     var text = document.getElementById("myBox");
     text.select();
     navigator.clipboard.writeText(text.value);
+    props.showAlert("Copied to Clipboard!", "success")
+
   }
 
   const extraSpace = ()=>{
     let newText = text.split(/[ ]+/);
     setText(newText.join(' '))
+    props.showAlert("Extra spaces removed", "success")
 
   }
    
