@@ -1,13 +1,15 @@
 import './App.css';
 import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
-import Alert from './components/Alert';
+// import Alert from './components/Alert';
 // import About from './components/About';
 import React, {useState} from 'react'
 
 function App() {
   const [mode, setMode] = useState('light');
   const [alert, setAlert] = useState(null);
+  const [redmode, setredMode] = useState('light');
+
 
   const showAlert=(message, type)=>{
     setAlert({
@@ -31,10 +33,27 @@ function App() {
 
     }
   }
+
+  // for red mode
+  const redtoggleMode = ()=>{
+    if(redmode === 'light'){
+      setredMode('danger')
+      document.body.style.backgroundColor= 'White';
+      showAlert("Light mode is enabled", "success");
+    }
+    else{
+      setredMode('light')
+      document.body.style.backgroundColor= '#ee6b6e';
+      showAlert("Red mode is enabled", "success");
+
+    }
+  }
+
+
   return(
     <>
-<Navbar title='Rameezistan' mode={mode} toggleMode={toggleMode}/>
-<Alert alert={alert}/>
+<Navbar title='Rameezistan' mode={mode} toggleMode={toggleMode} redtoggleMode={redtoggleMode}/>
+{/* <Alert alert={alert}/> */}
 
 <div className="container my-3">
     <TextForm showAlert={showAlert} heading="Enter something to analyze" mode={mode} />
